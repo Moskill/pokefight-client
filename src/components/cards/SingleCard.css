@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+.main-wrappper {
+  background-color: #FFCC00;
+  border-radius: 8px;
+  height: 9em;
+  width: 6.3em;
+  padding-top: 1px;
+  box-shadow: 1px 1px 0px rgb(39, 39, 39);;
+}
+
+.card-image {
+  background-color: #fff;
+  margin: 10px;
+  margin-top: 3px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  border-top: 5px solid grey;
+}
+
+.card-image-inner {
+  max-width: 40px;
+  max-height: 60px;
+}
+
+.card-header {
+  font-family: 'Orbitron';
+  padding: 2px 0px 0px 5px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+}
+
+.card-title {
+  font-weight: 1000;
+}
+
+.card-hp {
+  font-weight: bold;
+  font-size: 8px;
+  margin-right: 4px;
+}
+
+.card-base-list {
+  font-family: 'Orbitron';
+  font-size: 8px;
+  list-style-type: none;
+  margin: -5px 0px 0px 12px;
+  padding: 0px;
+}
+
+.card-base-list li {
+  margin: 0px;
+  padding: 0px;
+}
