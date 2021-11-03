@@ -1,0 +1,23 @@
+.app {
+  display: flex;
+  background-image: url('img/pokemon-background.jpg');
+  height: 98vh;
+  width: 100vw;
+  background-size: cover;
+  margin-top: -22px;
+  margin-left: -8px;
+  background-attachment: fixed;
+  background-position: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: space-around;
+  justify-content: space-around;
+}
+
+.table {
+  background-image: url('img/pokemon-table.png');
+  height: 81vh;
+  width: 45vw;
+  background-size: cover;
+  background-position: center;
+}
