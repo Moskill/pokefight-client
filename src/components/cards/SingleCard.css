@@ -53,3 +53,15 @@
   margin: 0px;
   padding: 0px;
 }
+
+.hp-style {
+  font-size: 6px;
+}
+
+.card-options img {
+  height: 146px;
+  width: 102px;
+  position: relative;
+  top: -8.5rem;
+  display: block;
+}

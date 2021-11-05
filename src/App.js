@@ -2,10 +2,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 import SingleCard from './components/cards/SingleCard';
+import CardDeck from './components/card-box/CardDeck';
 
 function App() {
 
+  const getRandNo = () => {
+    let randNo = Math.floor(Math.random() * 809);
+    return randNo;
+  }
+  
   const [pokemonList, setPokemonList] = useState();
+  const [cards, setCards] = useState({cardsAI:getRandNo(), cardsPlayer: getRandNo()});
 
   // ALle Pokemons fetchen 
   useEffect(() => {
@@ -17,15 +24,12 @@ function App() {
     });
   }, [])
 
-  const getRandNo = () => {
-    let randNo = Math.floor(Math.random() * 809);
-    return randNo;
-  }
+
     
   return (
     <div className="app">
       <div className="table">
-        <SingleCard cardNo={getRandNo()} props={pokemonList}/>
+        <CardDeck allCards={pokemonList} cardNo={cards}/>
       </div>
     </div>
   );
