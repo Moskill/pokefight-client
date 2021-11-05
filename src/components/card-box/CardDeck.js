@@ -6,7 +6,7 @@ import './CardDeck.css';
 function CardDeck(props) {
   console.log(props)
 
-  const [coverCard, setCoverCard] = useState({display: 'block'});
+  const [coverCard, setCoverCard] = useState({display: 'none'});
 
   return (
     <>

@@ -1,0 +1,25 @@
+.library-wrapper {
+  position: absolute;
+  top: 15%;
+  left: 2%;
+  height: 41em;
+  width: 29em;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: inset 2px 2px 4px #000;
+  border: 2px solid #0747a6;
+  overflow-y: auto;
+}
+
+.single-card {
+  padding: 3px;
+}
+
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
+  align-content: stretch;
+  width: 27.5rem;
+}
