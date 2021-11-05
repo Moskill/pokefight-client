@@ -16,6 +16,7 @@ function App() {
   const [cards, setCards] = useState({cardsAI:getRandNo(), cardsPlayer: getRandNo()});
   const [hasTurn, setHasTurn] = useState('AI'); // Wer am Zug ist
   const [openLibrary, setOpenLibrary] = useState(false);
+  const [searchField, setSearchField] = useState({display: 'none'});
 
   // ALle Pokemons fetchen 
   useEffect(() => {
@@ -29,6 +30,7 @@ function App() {
 
   const openLibraryHandler = () => {
     console.log(openLibrary, 'vor dem set');
+    searchField.display === 'none' ?  setSearchField({display: 'block'}) : setSearchField({display: 'none'})
     openLibrary ? setOpenLibrary(false) : setOpenLibrary(true);
   }
   
@@ -40,6 +42,7 @@ function App() {
       </div>
     </div>
       <button className="library-btn" onClick={openLibraryHandler}>Open Card library</button>
+      <input className="search-field" style={{display: searchField.display}} type="search" placeholder="Search Pokemon" />
       {openLibrary && (
         <Library pokemonList={pokemonList}/>
       )}

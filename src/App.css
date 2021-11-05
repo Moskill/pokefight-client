@@ -25,5 +25,12 @@
 .library-btn {
   position: absolute;
   top: 11%;
-  left: 10%;
+  left: 2.3%;
+}
+
+.search-field {
+  position: absolute;
+  top: 11%;
+  left: 13%;
+  width: 19em;
 }
