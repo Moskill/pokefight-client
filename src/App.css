@@ -1,8 +1,8 @@
 .app {
   display: flex;
   background-image: url('img/pokemon-background.jpg');
-  height: 98vh;
-  width: 100vw;
+  height: 100vh;
+  width: 99.1vw;
   background-size: cover;
   margin-top: -22px;
   margin-left: -8px;
@@ -20,4 +20,10 @@
   width: 45vw;
   background-size: cover;
   background-position: center;
+}
+
+.library-btn {
+  position: absolute;
+  top: 11%;
+  left: 10%;
 }

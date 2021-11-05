@@ -1,0 +1,12 @@
+.canvas-wrapper {
+  position: absolute;
+  top: 15%;
+  left: 73%;
+  height: 41em;
+  width: 29em;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: inset 2px 2px 4px #000;
+  border: 2px solid #0747a6;
+  overflow-y: hidden;
+}

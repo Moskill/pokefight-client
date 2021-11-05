@@ -1,14 +1,14 @@
 .ai-card {
   display: block;
   position: absolute;
-  left: 47%;
-  top: 10%;
+  left: 46.5%;
+  top: 11%;
 }
 
 .player-card {
   display: block;
   position: absolute;
-  left: 47%;
+  left: 46.5%;
   top: 65%;
 }
 
