@@ -1,0 +1,21 @@
+.ai-card {
+  display: block;
+  position: absolute;
+  left: 47%;
+  top: 10%;
+}
+
+.player-card {
+  display: block;
+  position: absolute;
+  left: 47%;
+  top: 65%;
+}
+
+.card-options {
+  height: 146px;
+  width: 102px;
+  position: relative;
+  top: -0.55rem;
+  display: block;
+}
