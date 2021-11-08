@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './SingleCard.css';
 
 function SingleCard({allCards, cardNo}) {
-  console.log(allCards)
 
   const cardImg = `https://img.pokemondb.net/artwork/large/${allCards && allCards[cardNo].name.english.toLowerCase()}.jpg`;
   
