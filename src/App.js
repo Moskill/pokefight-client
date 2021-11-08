@@ -4,6 +4,7 @@ import './App.css';
 import CardDeck from './components/card-box/CardDeck';
 import Library from './components/cardLibrary/Library';
 import Canvas from './components/game-board/Canvas';
+export const gameContext = React.createContext({cardsAI: null, cardsPlayer: null});
 
 function App() {
 
@@ -17,6 +18,29 @@ function App() {
   const [hasTurn, setHasTurn] = useState('AI'); // Wer am Zug ist
   const [openLibrary, setOpenLibrary] = useState(false);
   const [searchField, setSearchField] = useState({display: 'none'});
+  const [results, setResults] = useState([]);
+  const [userInput, setUserInput] = useState("");
+  
+  console.log(results, 'RESULTS???');
+
+  // Die Suchfunktion
+  const searchHandler = (e) => {
+    e.preventDefault();
+    let myResults = [];
+    const items = pokemonList.filter((item) => item.name.english.includes(userInput)).map((i) => {
+        myResults.push(i);
+      });
+    setResults(myResults);
+    // setPokemonList(myResults)
+  };
+
+  // // Der Game-Loop
+  // if(hasTurn === 'AI') {
+  //   console.log('AI ist am Zug!')
+  // } else { 
+  //   console.log('Player ist am Zug!') 
+  // }
+
 
   // ALle Pokemons fetchen 
   useEffect(() => {
@@ -36,15 +60,18 @@ function App() {
   
   return (
     <>
-    <div className="app">
-      <div className="table">
-        <CardDeck allCards={pokemonList} cardNo={cards}/>
+      <div className="app">
+        <div className="table">
+          <CardDeck allCards={pokemonList} cardNo={cards}/>
+        </div>
       </div>
-    </div>
       <button className="library-btn" onClick={openLibraryHandler}>Open Card library</button>
-      <input className="search-field" style={{display: searchField.display}} type="search" placeholder="Search Pokemon" />
+      <form onSubmit={searchHandler}>
+        <input className="search-field" style={{display: searchField.display}} type="search" placeholder="Search Pokemon" onChange={(e) => setUserInput(e.target.value)} />
+        <input type="submit" value="Search" />
+      </form>
       {openLibrary && (
-        <Library pokemonList={pokemonList}/>
+        <Library pokemonList={pokemonList} searchResults={results} />
       )}
       <Canvas />
     </>
