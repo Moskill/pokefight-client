@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import axios from 'axios';
 import './App.css';
 import CardDeck from './components/card-box/CardDeck';
 import Library from './components/cardLibrary/Library';
 import Canvas from './components/game-board/Canvas';
-export const gameContext = React.createContext({cardsAI: null, cardsPlayer: null});
+
+export const PokemonListContext = createContext({});
+export const CardsContext = createContext({cardsAI: '', cardsPlayer: ''});
 
 function App() {
+  console.log(CardsContext)
 
   const getRandNo = () => {
     let randNo = Math.floor(Math.random() * 809);
@@ -21,8 +24,6 @@ function App() {
   const [results, setResults] = useState([]);
   const [userInput, setUserInput] = useState("");
   
-  console.log(results, 'RESULTS???');
-
   // Die Suchfunktion
   const searchHandler = (e) => {
     e.preventDefault();
@@ -60,20 +61,25 @@ function App() {
   
   return (
     <>
-      <div className="app">
-        <div className="table">
-          <CardDeck allCards={pokemonList} cardNo={cards}/>
-        </div>
-      </div>
-      <button className="library-btn" onClick={openLibraryHandler}>Open Card library</button>
-      <form onSubmit={searchHandler}>
-        <input className="search-field" style={{display: searchField.display}} type="search" placeholder="Search Pokemon" onChange={(e) => setUserInput(e.target.value)} />
-        <input type="submit" value="Search" />
-      </form>
-      {openLibrary && (
-        <Library pokemonList={pokemonList} searchResults={results} />
-      )}
-      <Canvas />
+      <PokemonListContext.Provider value={pokemonList} cards={cards}>
+        <CardsContext.Provider value={cards}>
+          <div className="app">
+            <div className="table">
+              <CardDeck />
+            </div>
+          </div>
+          <button className="library-btn" onClick={openLibraryHandler}>Open Card library</button>
+          <form onSubmit={searchHandler}>
+            <input className="search-field" style={{display: searchField.display}} type="search" placeholder="Search Pokemon" onChange={(e) => setUserInput(e.target.value)} />
+            <input type="submit" value="Search" />
+          </form>
+          {openLibrary && (
+            <Library searchResults={results} />
+          )}
+          
+          <Canvas />
+          </CardsContext.Provider>
+      </PokemonListContext.Provider>
     </>
   );
 }
