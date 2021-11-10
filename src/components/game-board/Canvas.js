@@ -1,7 +1,6 @@
 import React from 'react';
 import './Canvas.css';
 import ScoreDisplay from './ScoreDisplay';
-import { startCards } from '../../context/pokemonContext';
 
 function Canvas() {
 

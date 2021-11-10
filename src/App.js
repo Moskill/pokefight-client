@@ -9,7 +9,6 @@ export const PokemonListContext = createContext({});
 export const CardsContext = createContext({cardsAI: '', cardsPlayer: ''});
 
 function App() {
-  console.log(CardsContext)
 
   const getRandNo = () => {
     let randNo = Math.floor(Math.random() * 809);
@@ -18,29 +17,29 @@ function App() {
   
   const [pokemonList, setPokemonList] = useState();
   const [cards, setCards] = useState({cardsAI:getRandNo(), cardsPlayer: getRandNo()});
-  const [hasTurn, setHasTurn] = useState('AI'); // Wer am Zug ist
+  const [hasTurn, setHasTurn] = useState('AI'); 
   const [openLibrary, setOpenLibrary] = useState(false);
   const [searchField, setSearchField] = useState({display: 'none'});
   const [results, setResults] = useState([]);
-  const [userInput, setUserInput] = useState("");
+
+  // Update für cards
+  const updateCardsHandler = (card) => {
+    setCards({...cards, cardsPlayer: card})
+  }
   
   // Die Suchfunktion
-  const searchHandler = (e) => {
-    e.preventDefault();
-    let myResults = [];
-    const items = pokemonList.filter((item) => item.name.english.includes(userInput)).map((i) => {
-        myResults.push(i);
-      });
-    setResults(myResults);
-    // setPokemonList(myResults)
+  const searchHandler = (arg) => {
+    const itemsArr = pokemonList.filter((item) => item.name.english.toLowerCase().includes(arg.toLowerCase()))
+    setResults(itemsArr);
   };
 
-  // // Der Game-Loop
-  // if(hasTurn === 'AI') {
-  //   console.log('AI ist am Zug!')
-  // } else { 
-  //   console.log('Player ist am Zug!') 
-  // }
+  // Der Game-Loop
+  const startGame = () => {
+    if(hasTurn === 'AI') {
+
+    }
+    console.log(pokemonList)
+  }
 
 
   // ALle Pokemons fetchen 
@@ -54,7 +53,6 @@ function App() {
   }, []);
 
   const openLibraryHandler = () => {
-    console.log(openLibrary, 'vor dem set');
     searchField.display === 'none' ?  setSearchField({display: 'block'}) : setSearchField({display: 'none'})
     openLibrary ? setOpenLibrary(false) : setOpenLibrary(true);
   }
@@ -63,22 +61,21 @@ function App() {
     <>
       <PokemonListContext.Provider value={pokemonList} cards={cards}>
         <CardsContext.Provider value={cards}>
+          <button onClick={startGame} className="start-btn">Start Game</button>
           <div className="app">
             <div className="table">
               <CardDeck />
             </div>
           </div>
           <button className="library-btn" onClick={openLibraryHandler}>Open Card library</button>
-          <form onSubmit={searchHandler}>
-            <input className="search-field" style={{display: searchField.display}} type="search" placeholder="Search Pokemon" onChange={(e) => setUserInput(e.target.value)} />
-            <input type="submit" value="Search" />
+          <form>
+            <input className="search-field" style={{display: searchField.display}} type="search" placeholder="Search Pokemon" onChange={(e) => searchHandler(e.target.value)} />
           </form>
           {openLibrary && (
-            <Library searchResults={results} />
+            <Library searchResults={results} updateCards={updateCardsHandler} />
           )}
-          
           <Canvas />
-          </CardsContext.Provider>
+        </CardsContext.Provider>
       </PokemonListContext.Provider>
     </>
   );

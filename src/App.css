@@ -34,3 +34,9 @@
   left: 13%;
   width: 19em;
 }
+
+.start-btn {
+  position: absolute;
+  top: 2%;
+  left: 2%;
+}
