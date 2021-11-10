@@ -1,45 +1,40 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { PokemonListContext } from '../../App';
 import { CardsContext } from '../../App';
 import './Library.css';
 import SingleCard from '../cards/SingleCard';
 
 
-function Library({searchResults}) {
+function Library({searchResults, updateCards}) {
 
-  const pokemonList = useContext(PokemonListContext);
-  const {cards, setCards} = useContext(CardsContext);
+  const [page, setPage] = useState({pageFrom: 0, pageTo: 30});
 
-  console.log(CardsContext)
-  // cardNo.cardsPlayer = 777;
+  let pokemonList = useContext(PokemonListContext);
 
-
-  // console.log(searchResults[0].name.english)
-
-  // if(searchResults !== []){
-  //   const filteredPokemons = pokemonList.filter(item => {
-  //     return searchResults.name.english === item.name.english
-  //   })
-  //   console.log(filteredPokemons)
-  // }
-  
+    if(searchResults.length !== 809){
+      pokemonList = searchResults;
+      console.log(searchResults.length);
+      // searchResults.length > 30 ? setPage({pageFrom: 0, pageTo: 30}) : setPage({pageFrom: 0, pageTo: searchResults.length});
+    }
 
   return (
     <>
       <div className="library-wrapper">
         <div className="card-list">
           {pokemonList && (
-            
-            pokemonList.slice(20, 60).map(card => {
-              // console.log(card)
+            pokemonList.slice(page.pageFrom, page.pageTo).map(card => {
               return (
-                <div className="single-card">
-                  <SingleCard key={card.id -1} cardNo={card.id -1} onClick={() => setCards({cardsPlayer: card.id})} />
+                <div className="single-card" onClick={() => updateCards(card.id)}>
+                  <SingleCard key={card.id -1} cardNo={card.id -1} />
                 </div>
               )
             })
           )}
         </div>  
+      </div>
+      <div className="pagination">
+        <button onClick={() => setPage({pageFrom: page.pageFrom - 30, pageTo: page.pageTo - 30})}> ◀️ </button>
+        <button onClick={() => setPage({pageFrom: page.pageFrom + 30, pageTo: page.pageTo + 30})}> ▶️ </button>
       </div>
     </>
   )
