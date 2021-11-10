@@ -1,33 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { PokemonListContext } from '../../App';
 import './SingleCard.css';
 
-function SingleCard({allCards, cardNo}) {
+function SingleCard({cardNo}) {
+  const pokemonList = useContext(PokemonListContext);
 
-  const cardImg = `https://img.pokemondb.net/artwork/large/${allCards && allCards[cardNo].name.english.toLowerCase()}.jpg`;
+  const cardImg = `https://img.pokemondb.net/artwork/large/${pokemonList && pokemonList[cardNo].name.english.toLowerCase()}.jpg`;
   
-  const [pokemon, setPokemon] = useState({});
-  
-
-  // <button onClick={() => coverCard.display === 'none' ? setCoverCard({display: 'block'}) : setCoverCard({display: 'none'})}>O</button>
-
   return (
     <>
-    {allCards && (
+    {pokemonList && (
       <div className="main-wrappper">
         <div className="card-header">
-          <div className="card-title">{allCards[cardNo].name.english}</div>
-          <div className="card-hp"><span className="hp-style">HP </span>{allCards[cardNo].base.HP}</div>
+          <div className="card-title">{pokemonList[cardNo].name.english}</div>
+          <div className="card-hp"><span className="hp-style">HP </span>{pokemonList[cardNo].base.HP}</div>
         </div>
         <div className="card-image">
         <img src={cardImg} className="card-image-inner" height="100" alt="Pokemon-Card" />
         </div>
         <div className="card-attack">
           <ul className="card-base-list">
-            <li>Attack - {allCards[cardNo].base.Attack}</li>
-            <li>Defense - {allCards[cardNo].base.Defense}</li>
-            <li>Sp. Attack - {allCards[cardNo].base.SpAttack}</li>
-            <li>Sp. Defense - {allCards[cardNo].base.SpDefense}</li>
-            <li>Speed - {allCards[cardNo].base.Speed}</li>
+            <li>Attack - {pokemonList[cardNo].base.Attack}</li>
+            <li>Defense - {pokemonList[cardNo].base.Defense}</li>
+            <li>Sp. Attack - {pokemonList[cardNo].base.SpAttack}</li>
+            <li>Sp. Defense - {pokemonList[cardNo].base.SpDefense}</li>
+            <li>Speed - {pokemonList[cardNo].base.Speed}</li>
           </ul>
         </div>
       </div>

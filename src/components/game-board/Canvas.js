@@ -1,12 +1,17 @@
 import React from 'react';
 import './Canvas.css';
-
+import ScoreDisplay from './ScoreDisplay';
+import { startCards } from '../../context/pokemonContext';
 
 function Canvas() {
+
+  // console.log(startCards, 'Canvas');
+ 
   return (
     <>
       <div className="canvas-wrapper">
-        <h3>The Game</h3>
+        <ScoreDisplay type={'ai'} />
+        <ScoreDisplay type={'player'} />
       </div>
     </>
   )
