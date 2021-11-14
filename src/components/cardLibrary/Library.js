@@ -10,11 +10,8 @@ function Library({searchResults, updateCards}) {
   const [page, setPage] = useState({pageFrom: 0, pageTo: 30});
 
   let pokemonList = useContext(PokemonListContext);
-
-    if(searchResults.length !== 809){
+    if(searchResults.length !== 809 && searchResults.length !== 0){
       pokemonList = searchResults;
-      console.log(searchResults.length);
-      // searchResults.length > 30 ? setPage({pageFrom: 0, pageTo: 30}) : setPage({pageFrom: 0, pageTo: searchResults.length});
     }
 
   return (
