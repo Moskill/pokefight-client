@@ -17,7 +17,7 @@ function App() {
   
   const [pokemonList, setPokemonList] = useState();
   const [cards, setCards] = useState({cardsAI:getRandNo(), cardsPlayer: getRandNo()});
-  const [hasTurn, setHasTurn] = useState('AI'); 
+  const [hasTurn, setHasTurn] = useState(null); 
   const [openLibrary, setOpenLibrary] = useState(false);
   const [searchField, setSearchField] = useState({display: 'none'});
   const [results, setResults] = useState([]);
@@ -43,26 +43,19 @@ function App() {
     pointsAI > pointsPlayer ?  setPoints({AI: points.AI + 1, Player: points.Player + 0}) : setPoints({AI: points.AI + 0, Player: points.Player + 1});
     setRounds(rounds + 1);
   }
-  
-  console.log('Punkte: ', points, 'Runden: ', rounds)
- 
+
   // Einen zug ausführen
   const turnHandler = (hasTurn) => {
     getWinner(cards.cardsAI, cards.cardsPlayer)
     hasTurn === 'AI' ? setHasTurn('Player') : setHasTurn('AI');
-    console.log('Player hat gezogen!');
   }
-
+  
   // Der Game-Loop
   const startGame = () => {
-
-    if(hasTurn === 'AI') {
-
-
-      setHasTurn('Player')
-    }
+    setHasTurn('AI')
   }
-
+  
+  console.log(hasTurn);
 
   // ALle Pokemons fetchen 
   useEffect(() => {
@@ -96,7 +89,7 @@ function App() {
           {openLibrary && (
             <Library searchResults={results} updateCards={updateCardsHandler} />
           )}
-          <Canvas />
+          <Canvas points={points}/>
         </CardsContext.Provider>
       </PokemonListContext.Provider>
     </>

@@ -21,7 +21,7 @@ function Library({searchResults, updateCards}) {
           {pokemonList && (
             pokemonList.slice(page.pageFrom, page.pageTo).map(card => {
               return (
-                <div className="single-card" onClick={() => updateCards(card.id)}>
+                <div className="single-card" onClick={() => updateCards(card.id -1 )}>
                   <SingleCard key={card.id -1} cardNo={card.id -1} />
                 </div>
               )

@@ -5,7 +5,9 @@ function ScoreDisplay(props) {
   return (
     <>
       <div className="scoreboard-wrapper">
-        {props.type}
+        <h3>{props.type}</h3>
+        <h1>{props.pointsAI}</h1>
+        <h1>{props.pointsPlayer}</h1>
       </div>
     </>
   )

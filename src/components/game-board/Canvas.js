@@ -2,15 +2,15 @@ import React from 'react';
 import './Canvas.css';
 import ScoreDisplay from './ScoreDisplay';
 
-function Canvas() {
+function Canvas({points}) {
 
-  // console.log(startCards, 'Canvas');
+  // console.log(points, 'Canvas props');
  
   return (
     <>
       <div className="canvas-wrapper">
-        <ScoreDisplay type={'ai'} />
-        <ScoreDisplay type={'player'} />
+        <ScoreDisplay type={'ai'} pointsAI={points.AI}/>
+        <ScoreDisplay type={'player'} pointsPlayer={points.Player}/>
       </div>
     </>
   )
